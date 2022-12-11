@@ -66,6 +66,34 @@ local function generate_query_params(code)
   if code ~= nil then
     params.code = code
     params.l = vim.bo.filetype
+
+	if vim.bo.filetype == 'typescript' then
+		params.l = 'application/typescript'
+	end
+
+	if vim.bo.filetype == 'javascript' then
+		params.l = 'application/javascript'
+	end
+
+	if vim.bo.filetype == 'go' then
+		params.l = 'text/x-go'
+	end
+
+	if
+		vim.bo.filetype == 'typescriptreact' or
+		vim.bo.filetype == 'javascriptreact'
+	then
+		params.l = 'jsx'
+	end
+
+	if
+		vim.bo.filetype == 'cpp' or
+		vim.bo.filetype == 'hpp' or
+		vim.bo.filetype == 'h'
+	then
+		params.l = 'text/x-c'
+	end
+
   end
 
   return encode_params(params)
